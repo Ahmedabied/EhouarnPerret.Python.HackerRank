@@ -7,23 +7,11 @@ e f g
 There are hourglasses in A, and an hourglass sum is the sum of an hourglass' values.
 """
 
-A = []
-for arr_i in range(6):
-	arr_t = [int(arr_temp) for arr_temp in input().strip().split(' ')]
-	A.append(arr_t)
+intlst=lambda x:[int(i) for i in x]
+lst,ist=[intlst(i) for i in [input().split() for f in range(6)]],[]
+for line in range(4):
+    for start in range(4):
+        end=start+3
+        ist.append(sum(lst[line][start:end])+lst[line+1][start+1]+sum(lst[line+2][start:end]))
+print(max(ist))
 
-smax = -9 * 7
-
-for row in range(len(A) - 2):
-	for column in range(len(A[row]) - 2):
-		tl = A[row][column]
-		tc = A[row][column + 1]
-		tr = A[row][column + 2]
-		mc = A[row + 1][column + 1]
-		bl = A[row + 2][column]
-		bc = A[row + 2][column + 1]
-		br = A[row + 2][column + 2]
-		s = tl + tc + tr + mc + bl + bc + br
-		smax = max(s, smax)
-
-print(smax)
